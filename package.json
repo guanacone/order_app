@@ -8,6 +8,9 @@
     "@edwmurph/eslint-config": "0.0.12"
   },
   "scripts": {
+    "install-gatsby": "cd gatsby && npm install",
+    "install-sanity": "cd sanity && npm install",
+    "install": "npm run install-sanity & npm run install-gatsby",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
