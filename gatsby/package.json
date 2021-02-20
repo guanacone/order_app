@@ -1,0 +1,35 @@
+{
+  "name": "gatsby_boilerplate",
+  "private": true,
+  "description": "A simplified bare-bones starter for Gatsby",
+  "version": "0.1.0",
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "upgrade-deps": "upgrade-deps"
+  },
+  "dependencies": {
+    "bootstrap": "4.6.0",
+    "gatsby": "2.32.4",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@edwmurph/eslint-config": "0.0.12",
+    "upgrade-deps": "0.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guanacone/gatsby_boilerplate"
+  },
+  "bugs": {
+    "url": "https://github.com/guanacone/gatsby_boilerplate/issues"
+  }
+}
