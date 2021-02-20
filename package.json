@@ -11,6 +11,9 @@
     "install-gatsby": "cd gatsby && npm install",
     "install-sanity": "cd sanity && npm install",
     "install": "npm run install-sanity & npm run install-gatsby",
+    "start-sanity": "cd sanity && npm start",
+    "start-gatsby": "cd gatsby && npm start",
+    "start": "npm run start-sanity & npm run start-gatsby",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
