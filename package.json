@@ -15,7 +15,8 @@
     "start-gatsby": "cd gatsby && npm start",
     "start": "npm run start-sanity & npm run start-gatsby",
     "clean": "cd gatsby && gatsby clean",
-    "deploy": "cd sanity && sanity graphql deploy",
+    "sanity-graphql-deploy": "cd sanity && sanity graphql deploy",
+    "deploy-sanity": "cd sanity && sanity deploy",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
