@@ -1,4 +1,1 @@
-module.exports = {
-  root: true,
-  extends: '@edwmurph/eslint-config',
-};
+module.exports = { root: true };
