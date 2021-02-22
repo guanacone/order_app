@@ -1,3 +1,3 @@
 module.exports = {
-  extends: '@edwmurph/eslint-config/gatsby'
+  extends: '@edwmurph/eslint-config/gatsby',
 };
