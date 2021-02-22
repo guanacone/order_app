@@ -2,7 +2,6 @@
   "name": "gatsby-sanity-starter",
   "version": "1.0.0",
   "description": "Basic scaffold for gatsbyJS with sanity CMS project",
-  "main": "index.js",
   "dependencies": {},
   "devDependencies": {
     "@edwmurph/eslint-config": "0.0.12"
