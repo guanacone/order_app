@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "upgrade-deps": "upgrade-deps"
+  },
+  "dependencies": {
+    "bootstrap": "4.6.0",
+    "dotenv": "8.2.0",
+    "gatsby": "2.32.4",
+    "gatsby-source-sanity": "6.0.5",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@edwmurph/eslint-config": "0.0.12",
+    "upgrade-deps": "0.0.4"
+  }
+}

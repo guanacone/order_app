@@ -1,0 +1,32 @@
+{
+  "name": "gatsby-sanity-starter",
+  "version": "1.0.0",
+  "description": "Basic scaffold for gatsbyJS with sanity CMS project",
+  "dependencies": {},
+  "devDependencies": {
+    "@edwmurph/eslint-config": "0.0.12"
+  },
+  "scripts": {
+    "install-gatsby": "cd gatsby && npm install",
+    "install-sanity": "cd sanity && npm install",
+    "install": "npm run install-sanity & npm run install-gatsby",
+    "start-sanity": "cd sanity && npm start",
+    "start-gatsby": "cd gatsby && npm start",
+    "start": "npm run start-sanity & npm run start-gatsby",
+    "clean": "cd gatsby && gatsby clean",
+    "sanity-graphql-deploy": "cd sanity && sanity graphql deploy",
+    "deploy-sanity": "cd sanity && sanity deploy",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guanacone/gatsby-sanity-starter.git"
+  },
+  "author": "Gilles Rusca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guanacone/gatsby-sanity-starter/issues"
+  },
+  "homepage": "https://github.com/guanacone/gatsby-sanity-starter#readme"
+}
