@@ -6,8 +6,6 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "upgrade-deps": "upgrade-deps"
   },
   "dependencies": {
@@ -19,7 +17,6 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@edwmurph/eslint-config": "0.0.12",
     "upgrade-deps": "0.0.4"
   }
 }
