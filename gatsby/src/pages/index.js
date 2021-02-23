@@ -6,6 +6,7 @@ const Home = ({ data }) => {
   return (
     <>
       <h2>{data.allSanityCompany.nodes.map((company) => company.name)}</h2>
+      <p>This is a test to see if content is pulled correctly from sanity.</p>
     </>
   );
 };
