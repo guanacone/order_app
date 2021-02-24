@@ -48,7 +48,7 @@ const NavStyles = styled.nav`
     }
   }
   @media (max-width: 600px) {
-    --columns: 4;
+    --columns: 2;
     margin-bottom: 2rem;
     border-bottom: 2px solid var(--grey);
     padding-bottom: 2rem;
@@ -66,7 +66,7 @@ const NavStyles = styled.nav`
     }
   }
   @media (max-width: 500px) {
-    --columns: 2;
+    --columns: 1;
   }
 `;
 
