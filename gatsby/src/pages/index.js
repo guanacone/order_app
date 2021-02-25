@@ -16,8 +16,9 @@ const StyledDiv = styled.div`
     grid-row: span 3;
     grid-gap: 1rem;
 
-    img {
+    .picture {
       margin-top: 10px;
+      height: 60vh;
     }
   }
 
@@ -38,7 +39,7 @@ const Home = ({ data: { pizzas: { nodes } } }) => {
           <div className='single-pizza' key={pizza._id}>
             <Link to={`/pizza/${pizza.slug.current}`}>
               <h2 className='mark'>{pizza.name}</h2>
-              <Img fluid={pizza.image.asset.fluid} alt={pizza.name} />
+              <Img fluid={pizza.image.asset.fluid} alt={pizza.name} className='picture'/>
             </Link>
           </div>
         ))}
@@ -58,7 +59,7 @@ export const query = graphql`
       price
       image {
         asset {
-          fluid(maxHeight: 350) {
+          fluid {
             ...GatsbySanityImageFluid
           }
         }
