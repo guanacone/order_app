@@ -3,6 +3,8 @@ const formatter = Intl.NumberFormat('en-CA', {
   currency: 'CAD',
 });
 
-export default function formatMoney(cents) {
+const formatMoney = (cents) => {
   return formatter.format(cents / 100);
-}
+};
+
+export default formatMoney;

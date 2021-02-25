@@ -4,6 +4,8 @@ const sizes = {
   L: 1.25,
 };
 
-export default function calculatePizzaPrice(cents, size) {
+const calculatePizzaPrice = (cents, size) => {
   return cents * sizes[size];
-}
+};
+
+export default calculatePizzaPrice;
