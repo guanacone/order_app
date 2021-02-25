@@ -7,7 +7,7 @@ module.exports = {
       version: packageJSON.dependencies.react,
     },
   },
-  rules: {        
-    "no-underscore-dangle": 'off'
- }
+  rules: {
+    'no-underscore-dangle': 'off',
+  },
 };
