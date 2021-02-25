@@ -37,7 +37,7 @@ const Home = ({ data: { pizzas: { nodes } } }) => {
         {pizzas.map((pizza) => (
           <div className='single-pizza' key={pizza._id}>
             <Link to={`/pizza/${pizza.slug.current}`}>
-              <h2 className='mark'>{pizza.name} - {pizza.price}</h2>
+              <h2 className='mark'>{pizza.name}</h2>
               <Img fluid={pizza.image.asset.fluid} alt={pizza.name} />
             </Link>
           </div>
