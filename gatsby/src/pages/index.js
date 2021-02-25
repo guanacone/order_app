@@ -15,6 +15,10 @@ const StyledDiv = styled.div`
     grid-template-rows: auto auto 1fr;
     grid-row: span 3;
     grid-gap: 1rem;
+
+    img {
+      margin-top: 10px;
+    }
   }
 
   @media(max-width: 900px) {
@@ -33,7 +37,7 @@ const Home = ({ data: { pizzas: { nodes } } }) => {
         {pizzas.map((pizza) => (
           <div className='single-pizza' key={pizza._id}>
             <Link to={`/pizza/${pizza.slug.current}`}>
-              <h2>{pizza.name} - {pizza.price}</h2>
+              <h2 className='mark'>{pizza.name} - {pizza.price}</h2>
               <Img fluid={pizza.image.asset.fluid} alt={pizza.name} />
             </Link>
           </div>
