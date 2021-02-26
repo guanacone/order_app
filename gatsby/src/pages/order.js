@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
+import useOrder from '../utils/useOrder';
 
 const StyledForm = styled.form`
   display: grid;
@@ -55,12 +56,12 @@ const StyledForm = styled.form`
   }
 `;
 
-const OrderPage = ({ data }) => {
+const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
   const { values, updateValue } = useForm({
     name: '',
     email: '',
   });
-  const pizzas = data.pizzas.nodes;
+  const { addToOrder } = useOrder({ pizzas, inputs: values });
   return (
     <>
       <StyledForm>
@@ -98,7 +99,7 @@ const OrderPage = ({ data }) => {
               </div>
               <div>
                 {['S', 'M', 'L'].map((size) => (
-                  <button type='button' key={size}>
+                  <button type='button' key={size} onClick={() => addToOrder({ id: pizza.id, size })}>
                     {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
                   </button>
                 ))}
