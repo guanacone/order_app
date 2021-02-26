@@ -29,24 +29,20 @@ const StyledDiv = styled.div`
   }
 `;
 
-const Home = ({ data: { pizzas: { nodes } } }) => {
-  console.log({ nodes });
-  const pizzas = nodes;
-  return (
-    <StyledDiv>
-      <div className='pizza-grid'>
-        {pizzas.map((pizza) => (
-          <div className='single-pizza' key={pizza._id}>
-            <Link to={`/pizza/${pizza.slug.current}`}>
-              <h2 className='mark'>{pizza.name}</h2>
-              <Img fluid={pizza.image.asset.fluid} alt={pizza.name} className='picture'/>
-            </Link>
-          </div>
-        ))}
-      </div>
-    </StyledDiv>
-  );
-};
+const Home = ({ data: { pizzas: { nodes: pizzas } } }) => (
+  <StyledDiv>
+    <div className='pizza-grid'>
+      {pizzas.map((pizza) => (
+        <div className='single-pizza' key={pizza._id}>
+          <Link to={`/pizza/${pizza.slug.current}`}>
+            <h2 className='mark'>{pizza.name}</h2>
+            <Img fluid={pizza.image.asset.fluid} alt={pizza.name} className='picture'/>
+          </Link>
+        </div>
+      ))}
+    </div>
+  </StyledDiv>
+);
 
 export default Home;
 
