@@ -6,6 +6,7 @@ import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
 import useOrder from '../utils/useOrder';
+import PizzaOrder from '../components/PizzaOrder';
 
 const StyledForm = styled.form`
   display: grid;
@@ -30,6 +31,7 @@ const StyledForm = styled.form`
     gap: 0 1.3rem;
     align-content: center;
     align-items: center;
+    position: relative;
     .gatsby-image-wrapper {
       grid-row: span 2;
       height: 100px;
@@ -48,7 +50,7 @@ const StyledForm = styled.form`
       color: var(--red);
       font-size: 3rem;
       position: absolute;
-      top: 0;
+      bottom: 0;
       right: 0;
       box-shadow: none;
       line-height: 1rem;
@@ -61,7 +63,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
     name: '',
     email: '',
   });
-  const { addToOrder } = useOrder({ pizzas, inputs: values });
+  const { order, addToOrder, removeFromOrder } = useOrder({ pizzas, inputs: values });
   return (
     <>
       <StyledForm>
@@ -109,6 +111,11 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
         </fieldset>
         <fieldset className='order'>
           <legend>Order</legend>
+          <PizzaOrder
+            order={order}
+            pizzas={pizzas}
+            removeFromOrder={removeFromOrder}
+          />
         </fieldset>
       </StyledForm>
     </>
