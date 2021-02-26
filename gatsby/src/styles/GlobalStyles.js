@@ -68,6 +68,7 @@ const GlobalStyles = createGlobalStyle`
 
   img {
     max-width: 100%;
+    border-radius: 20px;
   }
 
   .tilt {
