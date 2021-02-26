@@ -7,6 +7,7 @@ import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
 import useOrder from '../utils/useOrder';
 import PizzaOrder from '../components/PizzaOrder';
+import calculateOrderTotal from '../utils/calculateOrderTotal';
 
 const StyledForm = styled.form`
   display: grid;
@@ -116,6 +117,12 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
             pizzas={pizzas}
             removeFromOrder={removeFromOrder}
           />
+        </fieldset>
+        <fieldset>
+          <h3>
+            Your Total is {formatMoney(calculateOrderTotal(order, pizzas))}
+          </h3>
+          <button type='submit'>Order Ahead</button>
         </fieldset>
       </StyledForm>
     </>
