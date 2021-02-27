@@ -64,11 +64,24 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
     name: '',
     email: '',
   });
-  const { order, addToOrder, removeFromOrder } = useOrder({ pizzas, inputs: values });
+  const {
+    order,
+    addToOrder,
+    removeFromOrder,
+    error,
+    loading,
+    message,
+    submitOrder,
+  } = useOrder({ pizzas, values });
+
+  if (message) {
+    return <div>{message}</div>;
+  }
+
   return (
     <>
-      <StyledForm>
-        <fieldset>
+      <StyledForm onSubmit={submitOrder}>
+        <fieldset disabled={loading}>
           <legend>Your Info</legend>
           <label htmlFor='name'>Name</label>
           <input
@@ -77,6 +90,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
             id='name'
             value={values.name}
             onChange={updateValue}
+            required
           />
           <label htmlFor='email'>Email</label>
           <input
@@ -85,9 +99,10 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
             id='email'
             value={values.email}
             onChange={updateValue}
+            required
           />
         </fieldset>
-        <fieldset className='menu'>
+        <fieldset className='menu' disabled={loading}>
           <legend>Menu</legend>
           {pizzas.map((pizza) => (
             <div key={pizza.id} className='menu-item'>
@@ -110,7 +125,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
             </div>
           ))}
         </fieldset>
-        <fieldset className='order'>
+        <fieldset className='order' disabled={loading}>
           <legend>Order</legend>
           <PizzaOrder
             order={order}
@@ -118,11 +133,14 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
             removeFromOrder={removeFromOrder}
           />
         </fieldset>
-        <fieldset>
+        <fieldset disabled={loading}>
           <h3>
             Your Total is {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
-          <button type='submit'>Order Ahead</button>
+          <div>{error && <p>Error: {error}</p>}</div>
+          <button type='submit' disabled={loading}>
+            {loading ? 'Placing order...' : 'Order Ahead'}
+          </button>
         </fieldset>
       </StyledForm>
     </>
