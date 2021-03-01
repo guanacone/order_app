@@ -29,7 +29,7 @@ const useOrder = ({ pizzas, values }) => {
     setOrder([...order.slice(0, index), ...order.slice(index + 1)]);
   };
 
-  const submitOrder = async (e) => {
+  const submitOrder = async (e, method) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
@@ -40,12 +40,15 @@ const useOrder = ({ pizzas, values }) => {
       name: values.name,
       email: values.email,
     };
-    const res = await fetch(
-      `${process.env.GATSBY_SERVERLESS_BASE}/whatsappOrder`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    try {
+      const res = await fetch(
+        `${process.env.GATSBY_SERVERLESS_BASE}/${method}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
         },
       );
       const text = JSON.parse(await res.text());

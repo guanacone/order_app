@@ -94,7 +94,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
 
   return (
     <>
-      <StyledForm onSubmit={submitOrder}>
+      <StyledForm>
         <fieldset disabled={loading}>
           <legend>Your Info</legend>
           <label htmlFor='name'>Name</label>
@@ -152,13 +152,13 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
             Your Total is {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
           <div>{error && <p>Error: {error}</p>}</div>
-          <button type='submit' disabled={loading}>
+          <button type='submit' disabled={loading} onClick={(e) => submitOrder(e, 'placeOrder')}>
             <div className='button-container'>
               <span>{loading ? 'Placing order...' : 'Order by email'}</span>
               <FontAwesomeIcon className='icon' icon={faEnvelope} />
             </div>
           </button>
-          <button type='submit' disabled={loading}>
+          <button type='submit' disabled={loading} onClick={(e) => submitOrder(e, 'whatsappOrder')}>
             <div className='button-container'>
               <span>{loading ? 'Placing order...' : 'Order by WhatsApp'}</span>
               <FontAwesomeIcon className='icon' icon={faWhatsapp} />
