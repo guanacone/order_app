@@ -36,7 +36,7 @@ const useOrder = ({ pizzas, values }) => {
     setMessage(null);
     const body = {
       order: formatOrder(order, pizzas),
-      total: calculateOrderTotal(order, pizzas),
+      total: formatMoney(calculateOrderTotal(order, pizzas)),
       name: values.name,
       email: values.email,
     };
