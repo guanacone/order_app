@@ -58,13 +58,12 @@ exports.handler = async (event) => {
   }
 
   // send the email
-  const info = await transporter.sendMail({
+  await transporter.sendMail({
     from: 'Gilles Rusca <rusca.webdev@gmail.com>',
     to: `${body.name} <${body.email}>`,
     subject: 'New order!',
     html: generateOrderEmail({ order: body.order, total: body.total }),
   });
-  console.log(info);
   return {
     statusCode: 200,
     body: JSON.stringify({ message: 'Success' }),

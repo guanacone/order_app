@@ -19,7 +19,6 @@ const StyledPizza = styled.div`
 `;
 
 const SinglePizza = ({ data: { pizza } }) => {
-  console.log({ pizza });
   return (
     <StyledPizza>
       <Img fluid={pizza.image.asset.fluid}/>
