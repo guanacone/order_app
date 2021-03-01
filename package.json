@@ -11,7 +11,7 @@
     "install-sanity": "cd sanity && npm install",
     "install": "npm run install-sanity & npm run install-gatsby",
     "start-sanity": "cd sanity && npm start",
-    "start-gatsby": "cd gatsby && npm start",
+    "start-gatsby": "cd gatsby && npm run netlify",
     "start": "npm run start-sanity & npm run start-gatsby",
     "clean": "cd gatsby && gatsby clean",
     "sanity-graphql-deploy": "cd sanity && sanity graphql deploy",
