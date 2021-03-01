@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require('../../node_modules/nodemailer');
 
 const generateOrderEmail = ({ order, total }) => {
   return `<div>
@@ -25,8 +25,7 @@ const generateOrderEmail = ({ order, total }) => {
 
 // create a transport for nodemailer
 const transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: 587,
+  service: 'gmail',
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
@@ -60,8 +59,8 @@ exports.handler = async (event) => {
 
   // send the email
   const info = await transporter.sendMail({
-    from: 'Slick\'s Slices <slick@example.com>',
-    to: `${body.name} <${body.email}>, orders@example.com`,
+    from: 'Gilles Rusca <rusca.webdev@gmail.com>',
+    to: `${body.name} <${body.email}>`,
     subject: 'New order!',
     html: generateOrderEmail({ order: body.order, total: body.total }),
   });
