@@ -20,7 +20,8 @@
     "normalize.css": "8.0.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "styled-components": "5.2.1"
+    "styled-components": "5.2.1",
+    "twilio": "3.57.0"
   },
   "devDependencies": {
     "upgrade-deps": "0.0.4"
