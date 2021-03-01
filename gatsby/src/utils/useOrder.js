@@ -36,12 +36,12 @@ const useOrder = ({ pizzas, values }) => {
     setMessage(null);
     const body = {
       order: formatOrder(order, pizzas),
-      total: calculateOrderTotal(order, pizzas),
+      total: formatMoney(calculateOrderTotal(order, pizzas)),
       name: values.name,
       email: values.email,
     };
     const res = await fetch(
-      `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
+      `${process.env.GATSBY_SERVERLESS_BASE}/whatsappOrder`,
       {
         method: 'POST',
         headers: {
