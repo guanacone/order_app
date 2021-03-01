@@ -40,15 +40,12 @@ const useOrder = ({ pizzas, values }) => {
       name: values.name,
       email: values.email,
     };
-    try {
-      const res = await fetch(
-        `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(body),
+    const res = await fetch(
+      `${process.env.GATSBY_SERVERLESS_BASE}/whatsappOrder`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
       );
       const text = JSON.parse(await res.text());
