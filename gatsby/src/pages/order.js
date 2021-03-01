@@ -2,6 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+
 import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
@@ -55,6 +59,16 @@ const StyledForm = styled.form`
       right: 0;
       box-shadow: none;
       line-height: 1rem;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon {
+      padding-left: 10px;
     }
   }
 `;
@@ -139,7 +153,16 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
           </h3>
           <div>{error && <p>Error: {error}</p>}</div>
           <button type='submit' disabled={loading}>
-            {loading ? 'Placing order...' : 'Order Ahead'}
+            <div className='button-container'>
+              <span>{loading ? 'Placing order...' : 'Order by email'}</span>
+              <FontAwesomeIcon className='icon' icon={faEnvelope} />
+            </div>
+          </button>
+          <button type='submit' disabled={loading}>
+            <div className='button-container'>
+              <span>{loading ? 'Placing order...' : 'Order by WhatsApp'}</span>
+              <FontAwesomeIcon className='icon' icon={faWhatsapp} />
+            </div>
           </button>
         </fieldset>
       </StyledForm>
