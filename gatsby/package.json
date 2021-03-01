@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "npm run netlify",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
