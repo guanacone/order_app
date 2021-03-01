@@ -1,6 +1,6 @@
-const accountSid = '***REMOVED***';
-const authToken = '***REMOVED***';
-const client = require('twilio')(accountSid, authToken);
+const TwilioAccountSid = process.env.TwilioAccountSid;
+const TwilioAuthToken = process.env.TwilioAuthToken;
+const client = require('../../node_modules/twilio')(TwilioAccountSid, TwilioAuthToken);
 
 
 exports.handler = async (event) => {
