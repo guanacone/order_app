@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import axios from 'axios';
 import OrderContext from '../components/OrderContext';
 import calculateOrderTotal from './calculateOrderTotal';
 import calculatePizzaPrice from './calculatePizzaPrice';
@@ -41,32 +42,23 @@ const useOrder = ({ pizzas, values }) => {
       email: values.email,
     };
     try {
-      const res = await fetch(
+      const res = await axios.post(
         `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
         {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(body),
+          body,
         },
       );
-      const text = JSON.parse(await res.text());
+      console.log({ res });
 
-      // check if everything worked
-      if (res.status >= 400 && res.status < 600) {
-        setLoading(false); // turn off loading
-        setError(text.message);
-      } else {
-        // it worked!
-        setLoading(false);
-        setMessage('Success! Come on down for your pizza');
-        setOrder([]);
-        setTimeout(() => setMessage(null), 2e3);
-      }
+      setLoading(false);
+      setMessage('Success! Come on down for your pizza');
+      setOrder([]);
+      setTimeout(() => setMessage(null), 2e3);
     } catch (err) {
+      const { response: { data: { message: errMessage } } } = err;
+      console.log(errMessage);
       setLoading(false); // turn off loading
-      setError('Internal Server Error. Please try again!');
+      setError(errMessage || 'Internal Server Error. Please try again');
     }
   };
 

@@ -14,7 +14,7 @@ const generateOrderEmail = ({ order, total }) => {
     )
     .join('')}
     </ul>
-    <p>Your total is <strong>$${total}</strong> due at pickup</p>
+    <p>Your total is <strong>${total}</strong> due at pickup</p>
     <style>
         ul {
           list-style: none;
@@ -33,7 +33,8 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.handler = async (event) => {
-  const body = JSON.parse(event.body);
+  const { body } = JSON.parse(event.body);
+
   // Validate the data coming in is correct
   const requiredFields = ['email', 'name', 'order'];
 
