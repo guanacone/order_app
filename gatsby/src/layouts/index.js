@@ -5,6 +5,7 @@ import Nav from '../components/Nav';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
 import stripes from '../assets/images/stripes.svg';
+import { OrderProvider } from '../components/OrderContext';
 
 const SiteBorderStyles = styled.div`
   max-width: 1000px;
@@ -39,7 +40,7 @@ const Layout = ({ children }) => {
   }
 
   return (
-    <>
+    <OrderProvider>
       <GlobalStyles/>
       <Typography/>
       <SiteBorderStyles>
@@ -48,7 +49,7 @@ const Layout = ({ children }) => {
           {children}
         </ContentStyles>
       </SiteBorderStyles>
-    </>
+    </OrderProvider>
   );
 };
 
