@@ -51,10 +51,10 @@ export default {
     select: {
       title: 'name',
       media: 'image',
-      topping0: 'toppings.0.name',
-      topping1: 'toppings.1.name',
-      topping2: 'toppings.2.name',
-      topping3: 'toppings.3.name',
+      topping0: 'toppings.0.name.en',
+      topping1: 'toppings.1.name.en',
+      topping2: 'toppings.2.name.en',
+      topping3: 'toppings.3.name.en',
     },
     prepare: ({ title, media, ...toppings }) => {
       // 1. Filter undefined toppings out
