@@ -11,7 +11,7 @@ export default {
     {
       name: 'name',
       title: 'Topping Name',
-      type: 'string',
+      type: 'localeString',
       description: 'What is the name of the topping?',
     },
     {
@@ -29,7 +29,7 @@ export default {
       vegetarian: 'vegetarian',
     },
     prepare: ({ name, vegetarian }) => ({
-      title: `${name} ${vegetarian ? '🌱' : ''}`,
+      title: `${name.en} ${vegetarian ? '🌱' : ''}`,
     }),
   },
 };
