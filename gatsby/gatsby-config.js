@@ -18,5 +18,14 @@ module.exports = {
       },
     },
     'gatsby-plugin-layout',
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {
+        langKeyDefault: 'en',
+        langKeyForNull: 'en',
+        prefixDefault: true,
+        useLangKeyLayout: false,
+      },
+    },
   ],
 };
