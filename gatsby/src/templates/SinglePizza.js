@@ -18,8 +18,7 @@ const StyledPizza = styled.div`
   }
 `;
 
-const SinglePizza = ({ data: { pizza } }) => {
-  console.log({ pizza });
+const SinglePizza = ({ data: { pizza }, pageContext: { langKey } }) => {
   return (
     <StyledPizza>
       <Img fluid={pizza.image.asset.fluid}/>
@@ -27,7 +26,9 @@ const SinglePizza = ({ data: { pizza } }) => {
         <h2 className='mark'>{pizza.name}</h2>
         <ul>
           {pizza.toppings.map((topping) => (
-            <li key={topping.id}>{topping.name}</li>
+            <li key={topping.id}>
+              {topping.name[langKey] ? topping.name[langKey] : topping.name.en}
+            </li>
           ))}
         </ul>
       </div>
@@ -58,7 +59,10 @@ export const query = graphql`
         }
       }
       toppings {
-        name
+        name {
+          en
+          sp
+        }
         id
         vegetarian
       }

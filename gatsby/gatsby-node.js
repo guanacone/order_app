@@ -18,6 +18,15 @@ exports.createPages = async ({ graphql, actions }) => {
       component: require.resolve('./src/templates/SinglePizza.js'),
       context: {
         slug: pizza.slug.current,
+        langKey: 'en',
+      },
+    });
+    actions.createPage({
+      path: `sp/pizza/${pizza.slug.current}`,
+      component: require.resolve('./src/templates/SinglePizza.js'),
+      context: {
+        slug: pizza.slug.current,
+        langKey: 'sp',
       },
     });
   });
