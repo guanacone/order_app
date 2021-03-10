@@ -57,24 +57,24 @@ const Home = ({ data }) => {
 export default Home;
 
 export const query = graphql`
-  query MyQuery ($language: String!){
-  pizzas: allSanityPizza {
-    nodes {
-      _id
-      name
-      price
-      image {
-        asset {
-          fluid {
-            ...GatsbySanityImageFluid
+  query ($language: String!){
+    pizzas: allSanityPizza {
+      nodes {
+        _id
+        name
+        price
+        image {
+          asset {
+            fluid {
+              ...GatsbySanityImageFluid
+            }
           }
         }
-      }
-      slug {
-        current
+        slug {
+          current
+        }
       }
     }
-  }
   locales: allLocale(filter: {language: {eq: $language}}) {
       edges {
         node {

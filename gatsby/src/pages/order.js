@@ -105,7 +105,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
         <fieldset className='menu' disabled={loading}>
           <legend>Menu</legend>
           {pizzas.map((pizza) => (
-            <div key={pizza.id} className='menu-item'>
+            <div key={pizza._id} className='menu-item'>
               <Img
                 width='50'
                 height='50'
@@ -117,7 +117,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
               </div>
               <div>
                 {['S', 'M', 'L'].map((size) => (
-                  <button type='button' key={size} onClick={() => addToOrder({ id: pizza.id, size })}>
+                  <button type='button' key={size} onClick={() => addToOrder({ id: pizza._id, size })}>
                     {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
                   </button>
                 ))}
@@ -150,14 +150,11 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
 export default OrderPage;
 
 export const query = graphql`
-  query {
+  query ($language: String!) {
     pizzas: allSanityPizza {
       nodes {
+        _id
         name
-        id
-        slug {
-          current
-        }
         price
         image {
           asset {
@@ -165,6 +162,18 @@ export const query = graphql`
               ...GatsbySanityImageFluid
             }
           }
+        }
+        slug {
+          current
+        }
+      }
+    }
+  locales: allLocale(filter: {language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
         }
       }
     }
