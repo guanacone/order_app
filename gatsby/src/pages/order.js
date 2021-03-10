@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import { Trans } from 'gatsby-plugin-react-i18next';
 import useForm from '../utils/useForm';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
@@ -82,8 +83,8 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
     <>
       <StyledForm onSubmit={submitOrder}>
         <fieldset disabled={loading}>
-          <legend>Your Info</legend>
-          <label htmlFor='name'>Name</label>
+          <legend><Trans>Your Info</Trans></legend>
+          <label htmlFor='name'><Trans>Name</Trans></label>
           <input
             type='text'
             name='name'
@@ -92,7 +93,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
             onChange={updateValue}
             required
           />
-          <label htmlFor='email'>Email</label>
+          <label htmlFor='email'><Trans>Email</Trans></label>
           <input
             type='email'
             name='email'
@@ -126,7 +127,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
           ))}
         </fieldset>
         <fieldset className='order' disabled={loading}>
-          <legend>Order</legend>
+          <legend><Trans>Order</Trans></legend>
           <PizzaOrder
             order={order}
             pizzas={pizzas}
@@ -135,11 +136,11 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
         </fieldset>
         <fieldset disabled={loading}>
           <h3>
-            Your Total is {formatMoney(calculateOrderTotal(order, pizzas))}
+            <Trans>Your total is</Trans> {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
           <div>{error && <p>Error: {error}</p>}</div>
           <button type='submit' disabled={loading}>
-            {loading ? 'Placing order...' : 'Order Ahead'}
+            {loading ? <Trans>Placing order...</Trans> : <Trans>Order Ahead</Trans>}
           </button>
         </fieldset>
       </StyledForm>
