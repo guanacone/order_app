@@ -6,6 +6,7 @@ import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
 import stripes from '../assets/images/stripes.svg';
 import { OrderProvider } from '../components/OrderContext';
+import LanguageSelector from '../components/LanguageSelector';
 
 const SiteBorderStyles = styled.div`
   max-width: 1000px;
@@ -45,6 +46,7 @@ const Layout = ({ children }) => {
       <Typography/>
       <SiteBorderStyles>
         <ContentStyles>
+          <LanguageSelector/>
           <Nav />
           {children}
         </ContentStyles>
