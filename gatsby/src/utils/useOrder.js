@@ -42,21 +42,18 @@ const useOrder = ({ pizzas, values }) => {
       email: values.email,
     };
     try {
-      const res = await axios.post(
+      await axios.post(
         `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
         {
           body,
         },
       );
-      console.log({ res });
-
       setLoading(false);
       setMessage('Success! Come on down for your pizza');
       setOrder([]);
       setTimeout(() => setMessage(null), 2e3);
     } catch (err) {
       const { response: { data: { message: errMessage } } } = err;
-      console.log(errMessage);
       setLoading(false); // turn off loading
       setError(errMessage || 'Internal Server Error. Please try again');
     }
