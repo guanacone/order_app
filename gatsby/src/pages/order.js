@@ -118,7 +118,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
               </div>
               <div>
                 {['S', 'M', 'L'].map((size) => (
-                  <button type='button' key={size} onClick={() => addToOrder({ id: pizza._id, size })}>
+                  <button type='button' key={size} onClick={() => addToOrder({ id: pizza.id, size })}>
                     {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
                   </button>
                 ))}
