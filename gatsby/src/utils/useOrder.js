@@ -7,7 +7,7 @@ import formatMoney from './formatMoney';
 
 const formatOrder = (order, pizzas) => {
   return order.map((item) => {
-    const orderedPizza = pizzas.find((pizza) => pizza.id === item.id);
+    const orderedPizza = pizzas.find((pizza) => pizza._id === item.id);
     return {
       name: orderedPizza.name,
       size: item.size,
