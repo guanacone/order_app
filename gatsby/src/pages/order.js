@@ -118,7 +118,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
               </div>
               <div>
                 {['S', 'M', 'L'].map((size) => (
-                  <button type='button' key={size} onClick={() => addToOrder({ id: pizza.id, size })}>
+                  <button type='button' key={size} onClick={() => { addToOrder({ id: pizza._id, size }); }}>
                     {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
                   </button>
                 ))}
@@ -136,7 +136,8 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
         </fieldset>
         <fieldset disabled={loading}>
           <h3>
-            <Trans>Your total is</Trans> {formatMoney(calculateOrderTotal(order, pizzas))}
+            <Trans>Your total is</Trans>
+            {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
           <div>{error && <p>Error: {error}</p>}</div>
           <button type='submit' disabled={loading}>
