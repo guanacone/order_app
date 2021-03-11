@@ -140,7 +140,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
           </h3>
           <div>{error && <p>Error: {error}</p>}</div>
           <button type='submit' disabled={loading}>
-            {loading ? <Trans>Placing order...</Trans> : <Trans>Order Ahead</Trans>}
+            {loading ? <Trans>Placing order</Trans> : <Trans>Order Ahead</Trans>}
           </button>
         </fieldset>
       </StyledForm>
