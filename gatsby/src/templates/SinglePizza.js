@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import formatMoney from '../utils/formatMoney';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 
@@ -21,7 +21,7 @@ const StyledPizza = styled.div`
 const SinglePizza = ({ data: { pizza }, pageContext: { language } }) => {
   return (
     <StyledPizza>
-      <Img fluid={pizza.image.asset.fluid}/>
+      <GatsbyImage image={pizza.image.childImageSharp.gatsbyImageData} />
       <div className='item'>
         <h2 className='mark'>{pizza.name}</h2>
         <ul>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Trans } from 'gatsby-plugin-react-i18next';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -45,7 +45,10 @@ const Home = ({ data }) => {
           <div className='single-pizza' key={pizza._id}>
             <Link to={`/pizza/${pizza.slug.current}`}>
               <h2 className='mark'>{pizza.name}</h2>
-              <Img fluid={pizza.image.asset.fluid} alt={pizza.name} className='picture'/>
+              <GatsbyImage
+                image={pizza.image.childImageSharp.gatsbyImageData}
+                alt={pizza.name}
+                className='picture' />
             </Link>
           </div>
         ))}

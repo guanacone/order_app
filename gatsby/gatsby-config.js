@@ -33,5 +33,8 @@ module.exports = {
         defaultLanguage: 'en',
       },
     },
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
   ],
 };

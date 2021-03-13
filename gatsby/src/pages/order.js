@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import styled from 'styled-components';
 import { Trans } from 'gatsby-plugin-react-i18next';
 import useForm from '../utils/useForm';
@@ -108,73 +108,70 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
     return <div>{message}</div>;
   }
 
-  return (
-    <>
-      <StyledForm onSubmit={submitOrder}>
-        <fieldset disabled={loading}>
-          <legend><Trans>Your Info</Trans></legend>
-          <label htmlFor='name'><Trans>Name</Trans></label>
-          <input
-            type='text'
-            name='name'
-            id='name'
-            value={values.name}
-            onChange={updateValue}
-            required
-          />
-          <label htmlFor='email'><Trans>Email</Trans></label>
-          <input
-            type='email'
-            name='email'
-            id='email'
-            value={values.email}
-            onChange={updateValue}
-            required
-          />
-        </fieldset>
-        <fieldset className='menu' disabled={loading}>
-          {pizzas.map((pizza) => (
-            <div key={pizza._id} className='menu-item'>
-              <Img
-                width='50'
-                height='50'
-                fluid={pizza.image.asset.fluid}
-                alt={pizza.name}
-              />
-              <div>
-                <h2>{pizza.name}</h2>
-              </div>
-              <div className='button-container'>
-                {['S', 'M', 'L'].map((size) => (
-                  <button type='button' key={size} onClick={() => { addToOrder({ id: pizza._id, size }); }}>
-                    {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
-                  </button>
-                ))}
-              </div>
+  return <>
+    <StyledForm onSubmit={submitOrder}>
+      <fieldset disabled={loading}>
+        <legend><Trans>Your Info</Trans></legend>
+        <label htmlFor='name'><Trans>Name</Trans></label>
+        <input
+          type='text'
+          name='name'
+          id='name'
+          value={values.name}
+          onChange={updateValue}
+          required
+        />
+        <label htmlFor='email'><Trans>Email</Trans></label>
+        <input
+          type='email'
+          name='email'
+          id='email'
+          value={values.email}
+          onChange={updateValue}
+          required
+        />
+      </fieldset>
+      <fieldset className='menu' disabled={loading}>
+        {pizzas.map((pizza) => (
+          <div key={pizza._id} className='menu-item'>
+            <GatsbyImage
+              image={pizza.image.childImageSharp.gatsbyImageData}
+              width='50'
+              height='50'
+              alt={pizza.name} />
+            <div>
+              <h2>{pizza.name}</h2>
             </div>
-          ))}
-        </fieldset>
-        <fieldset className='order' disabled={loading}>
-          <legend><Trans>Order</Trans></legend>
-          <PizzaOrder
-            order={order}
-            pizzas={pizzas}
-            removeFromOrder={removeFromOrder}
-          />
-        </fieldset>
-        <fieldset disabled={loading}>
-          <h3>
-            <Trans>Your total is</Trans>
-            {formatMoney(calculateOrderTotal(order, pizzas))}
-          </h3>
-          <div>{error && <p>Error: {error}</p>}</div>
-          <button type='submit' disabled={loading}>
-            {loading ? <Trans>Placing order</Trans> : <Trans>Order Ahead</Trans>}
-          </button>
-        </fieldset>
-      </StyledForm>
-    </>
-  );
+            <div className='button-container'>
+              {['S', 'M', 'L'].map((size) => (
+                <button type='button' key={size} onClick={() => { addToOrder({ id: pizza._id, size }); }}>
+                  {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </fieldset>
+      <fieldset className='order' disabled={loading}>
+        <legend><Trans>Order</Trans></legend>
+        <PizzaOrder
+          order={order}
+          pizzas={pizzas}
+          removeFromOrder={removeFromOrder}
+        />
+      </fieldset>
+      <fieldset disabled={loading}>
+        <h3>
+          <Trans>Your total is</Trans>
+          {formatMoney(calculateOrderTotal(order, pizzas))}
+        </h3>
+        <div>{error && <p>Error: {error}</p>}</div>
+        <button type='submit' disabled={loading}>
+          {loading ? <Trans>Placing order</Trans> : <Trans>Order Ahead</Trans>}
+        </button>
+      </fieldset>
+    </StyledForm>
+  </>;
 };
 
 export default OrderPage;
