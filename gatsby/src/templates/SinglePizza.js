@@ -27,9 +27,7 @@ const SinglePizza = ({ data: { pizza }, pageContext: { language } }) => {
         <ul>
           {pizza.toppings.map((topping) => (
             <li key={topping.id}>
-              {topping.name[language]
-                ? topping.name[language]
-                : topping.name.en}
+              {topping.name[language] || topping.name.en}
             </li>
           ))}
         </ul>
