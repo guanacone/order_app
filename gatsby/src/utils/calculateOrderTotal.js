@@ -2,7 +2,7 @@ import calculatePizzaPrice from './calculatePizzaPrice';
 
 const calculateOrderTotal = (order, pizzas) => {
   return order.reduce((runningTotal, singleOrder) => {
-    const pizza = pizzas.find((singlePizza) => singlePizza.id === singleOrder.id);
+    const pizza = pizzas.find((singlePizza) => singlePizza._id === singleOrder.id);
     return runningTotal + calculatePizzaPrice(pizza.price, singleOrder.size);
   }, 0);
 };

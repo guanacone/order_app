@@ -18,8 +18,7 @@ const StyledPizza = styled.div`
   }
 `;
 
-const SinglePizza = ({ data: { pizza } }) => {
-  console.log({ pizza });
+const SinglePizza = ({ data: { pizza }, pageContext: { language } }) => {
   return (
     <StyledPizza>
       <Img fluid={pizza.image.asset.fluid}/>
@@ -27,7 +26,9 @@ const SinglePizza = ({ data: { pizza } }) => {
         <h2 className='mark'>{pizza.name}</h2>
         <ul>
           {pizza.toppings.map((topping) => (
-            <li key={topping.id}>{topping.name}</li>
+            <li key={topping.id}>
+              {topping.name[language] || topping.name.en}
+            </li>
           ))}
         </ul>
       </div>
@@ -45,8 +46,8 @@ const SinglePizza = ({ data: { pizza } }) => {
 export default SinglePizza;
 
 export const query = graphql`
-  query($slug: String!) {
-    pizza: sanityPizza(slug: { current: { eq: $slug } }) {
+  query($slug: String!, $language: String!) {
+    pizza: sanityPizza(slug: { current: { eq: $slug }}) {
       name
       price
       id
@@ -58,9 +59,21 @@ export const query = graphql`
         }
       }
       toppings {
-        name
+        name {
+          en
+          es
+        }
         id
         vegetarian
+      }
+    }
+    locales: allLocale(filter: {language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
       }
     }
   }

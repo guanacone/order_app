@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, Trans } from 'gatsby-plugin-react-i18next';
 import styled from 'styled-components';
 import Logo from './Logo';
 
@@ -75,7 +75,9 @@ const Nav = () => {
     <NavStyles>
       <ul>
         <li>
-          <Link to='/'>Pizza Menu</Link>
+          <Link to='/'>
+            <Trans>Pizza Menu</Trans>
+          </Link>
         </li>
         <li className='logo-item'>
           <Link to='/'>
@@ -83,7 +85,9 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link to='/order'>Order!</Link>
+          <Link to='/order'>
+            <Trans>Order!</Trans>
+          </Link>
         </li>
       </ul>
     </NavStyles>

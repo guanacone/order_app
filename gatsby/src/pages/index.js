@@ -1,10 +1,14 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { Link, Trans } from 'gatsby-plugin-react-i18next';
+import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
   text-align: center;
+  h1 {
+    padding-bottom: 15px;
+  }
   .pizza-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -29,41 +33,56 @@ const StyledDiv = styled.div`
   }
 `;
 
-const Home = ({ data: { pizzas: { nodes: pizzas } } }) => (
-  <StyledDiv>
-    <div className='pizza-grid'>
-      {pizzas.map((pizza) => (
-        <div className='single-pizza' key={pizza._id}>
-          <Link to={`/pizza/${pizza.slug.current}`}>
-            <h2 className='mark'>{pizza.name}</h2>
-            <Img fluid={pizza.image.asset.fluid} alt={pizza.name} className='picture'/>
-          </Link>
-        </div>
-      ))}
-    </div>
-  </StyledDiv>
-);
+const Home = ({ data }) => {
+  const pizzas = data.pizzas.nodes;
+  return (
+    <StyledDiv>
+      <h1>
+        <Trans>Our selection of tasty pizzas</Trans>
+      </h1>
+      <div className='pizza-grid'>
+        {pizzas.map((pizza) => (
+          <div className='single-pizza' key={pizza._id}>
+            <Link to={`/pizza/${pizza.slug.current}`}>
+              <h2 className='mark'>{pizza.name}</h2>
+              <Img fluid={pizza.image.asset.fluid} alt={pizza.name} className='picture'/>
+            </Link>
+          </div>
+        ))}
+      </div>
+    </StyledDiv>
+  );
+};
 
 export default Home;
 
 export const query = graphql`
-  query MyQuery {
-  pizzas: allSanityPizza {
-    nodes {
-      _id
-      name
-      price
-      image {
-        asset {
-          fluid {
-            ...GatsbySanityImageFluid
+  query ($language: String!){
+    pizzas: allSanityPizza {
+      nodes {
+        _id
+        name
+        price
+        image {
+          asset {
+            fluid {
+              ...GatsbySanityImageFluid
+            }
           }
         }
+        slug {
+          current
+        }
       }
-      slug {
-        current
+    }
+  locales: allLocale(filter: {language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
       }
     }
   }
-}
 `;
