@@ -6,10 +6,10 @@ import EsIcon from '../assets/images/spanish-language.png';
 
 const StyledDiv = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 8vw;
+  align-items: center;
   img {
-    width: 40px;
+    width: 3vw;
+    margin: 0 1vw 0;
   }
 `;
 

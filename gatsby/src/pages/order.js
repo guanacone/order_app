@@ -26,7 +26,7 @@ const StyledForm = styled.form`
       grid-column: span 1;
     }
   }
-  .menu-item {
+  .menu-item {  
     display: grid;
     grid-template-columns: 100px 1fr;
     grid-template-rows: 1fr 1fr;
@@ -43,10 +43,10 @@ const StyledForm = styled.form`
     }
     button {
       font-size: 1.5rem;
+      margin-left: 5px;
+      width: 30%;
     }
-    button + button {
-      margin-left: 1rem;
-    }
+    
     .remove {
       background: none;
       color: var(--red);
@@ -56,6 +56,35 @@ const StyledForm = styled.form`
       right: 0;
       box-shadow: none;
       line-height: 1rem;
+    }
+  }
+
+  @media(max-width: 900px) {
+    fieldset {
+      &.order,
+      &.menu {
+        grid-column: span 2;
+      }
+    }
+  }
+
+  @media(max-width: 495px) {
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      .gatsby-image-wrapper {
+        width: 100px;
+      }
+    }
+    
+    .button-container {
+      width: 100%; 
+      display: flex;
+      flex-direction: column;
+      button {
+        width: 90%;
+        margin-top: 5px;
+      }
     }
   }
 `;
@@ -104,7 +133,6 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
           />
         </fieldset>
         <fieldset className='menu' disabled={loading}>
-          <legend>Menu</legend>
           {pizzas.map((pizza) => (
             <div key={pizza._id} className='menu-item'>
               <Img
@@ -116,7 +144,7 @@ const OrderPage = ({ data: { pizzas: { nodes: pizzas } } }) => {
               <div>
                 <h2>{pizza.name}</h2>
               </div>
-              <div>
+              <div className='button-container'>
                 {['S', 'M', 'L'].map((size) => (
                   <button type='button' key={size} onClick={() => { addToOrder({ id: pizza._id, size }); }}>
                     {size} {formatMoney(calculatePizzaPrice(pizza.price, size))}
